@@ -16,7 +16,7 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', op
         document.getElementById("receptacle").innerHTML = ""
         for (let i = 0; i < total_film; i++) {
             document.getElementById("receptacle").innerHTML += `
-            <div class="col-6 col-sm-3">
+            <div class="card p-0 ms-2 mx-2 col-6 col-sm-3">
             <div class="cards h-100">
                     <img class="img-fluid" src="https://image.tmdb.org/t/p/w500${data.results[i].poster_path}"
                     alt="...">

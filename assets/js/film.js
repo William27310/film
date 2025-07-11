@@ -20,8 +20,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=fr-fr`, options)
 
 
         document.getElementById("details").innerHTML = `
-            <div class="d-flex justify-content-start border" id="details">
-                <img class="ms-5" src="https://image.tmdb.org/t/p/w500${data.poster_path}"
+                <img class="ms-3 mx-3 w-25" src="https://image.tmdb.org/t/p/w500${data.poster_path}"
                 alt="">
                 <ul>
                     <li type="none">
@@ -42,7 +41,11 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=fr-fr`, options)
     })
     .catch(err => console.error(err));
 
-let total_acteur = 15
+let total_acteur = 6
+
+function replaceImage() {
+
+}
 
 fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=fr-fr`, options)
     .then(response => response.json())
@@ -53,8 +56,8 @@ fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=fr-fr`, options
         for (let i = 0; i < total_acteur; i++) {
             document.getElementById("casting").innerHTML += 
             `
-            <div class="col-2 card">
-                <img src="https://image.tmdb.org/t/p/w500${acteur.cast[i].profile_path}" class="card-img-top" alt="...">
+            <div class="col-2 card p-0 ms-2 mx-2">
+                <img src="https://image.tmdb.org/t/p/w500${acteur.cast[i].profile_path}" alt="...">
                 <div class="card-body">
                     <p class="card-text"> ${acteur.cast[i].name} </p>
                     <p class="card-text"> ${acteur.cast[i].character}</p>
