@@ -32,6 +32,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=fr-fr`, options)
                     <p class="card-text">${data.vote_average}</p>
                     <p class="card-text">${data.overview}</p>
                     <p class="card-text">${data.release_date}</p>
+                    <p> 
                 </div>
             </div>
         </div>
