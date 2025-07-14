@@ -20,7 +20,7 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', op
                 <img src="https://image.tmdb.org/t/p/w500${data.results[i].poster_path}"
                     class="card-img-top" alt="...">
                 <div class="card-body">
-                    <a class="text-decoration-none" href="film.html?id=${data.results[i].id}"><h5 class="mt-2">${data.results[i].title}</h5></a>
+                    <a class="text-decoration-none text-white" href="film.html?id=${data.results[i].id}"><h5 class="mt-2">${data.results[i].title}</h5></a>
                     <p>${data.results[i].release_date}</p>
                     <p>${data.results[i].vote_average.toFixed(1)}</p>
                 </div>
