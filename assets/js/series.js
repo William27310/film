@@ -8,16 +8,48 @@ const options = {
 
 let totalseries = 10
 
-fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
-    .then(response => response.json())
-    .then(tv => {
-        console.log(tv)
+const urlParams = new URLSearchParams(window.location.search);
+const tv = urlParams.get('tv');
 
-        document.getElementById("series").innerHTML = ""
-        for (let i = 0; i < totalseries; i++) {
-            document.getElementById("series").innerHTML += `
+if (tv !== null && (typeof tv !== 'object')) {
+
+    fetch('https://api.themoviedb.org/3/tv/popular?language=fr-fr&page=1', options)
+        .then(response => response.json())
+        .then(tv => {
+            console.log(tv)
+
+            document.getElementById("series").innerHTML = ""
+            for (let i = 0; i < totalseries; i++) {
+                document.getElementById("series").innerHTML += `
             <div class="card p-0" style="width: 18rem;">
-                <img src="https://image.tmdb.org/t/p/w500${tv.results[i].poster_path}"
+                <img src="https://image.tmdb.org/t/p/w500${tv.results[i].poster_path}" onerror="this.src='assets/img/null.png'" alt="..."
+                class="card-img-top" alt="..." >
+            <div class="card-body">
+                <a class="text-decoration-none" href="">
+                    <h5 class="mt-2 text-white">${tv.results[i].name}</h5>
+                </a>
+                <p class="card-text">${tv.results[i].first_air_date}</p>
+                <p class="card-text">${tv.results[i].vote_average}</p>
+                </div>
+            </div>
+            `
+            }
+
+        })
+        .catch(err => console.error(err));
+
+} else {
+
+    fetch(`https://api.themoviedb.org/3/search/tv?query=${tv}&include_adult=false&language=fr-fr&page=1`, options)
+        .then(response => response.json())
+        .then(tv => {
+            console.log(tv)
+
+            document.getElementById("series").innerHTML = ""
+            for (let i = 0; i < totalseries; i++) {
+                document.getElementById("series").innerHTML += `
+            <div class="card p-0" style="width: 18rem;">
+                <img src="https://image.tmdb.org/t/p/w500${tv.results[i].poster_path}" onerror="this.src='assets/img/null.png'" alt="..."
                 class="card-img-top" alt="...">
             <div class="card-body">
                 <a class="text-decoration-none" href="">
@@ -28,9 +60,10 @@ fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
                 </div>
             </div>
             `
-        }
+            }
 
-   
-   
-    })
-    .catch(err => console.error(err));
+
+        })
+        .catch(err => console.error(err));
+
+}

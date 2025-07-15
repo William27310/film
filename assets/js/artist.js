@@ -8,7 +8,7 @@ const options = {
 
 let totalartist = 10
 
-fetch('https://api.themoviedb.org/3/trending/person/day?language=en-US', options)
+fetch('https://api.themoviedb.org/3/trending/person/day?language=fr-fr', options)
     .then(response => response.json())
     .then(art => {
         console.log(art)
@@ -17,7 +17,7 @@ fetch('https://api.themoviedb.org/3/trending/person/day?language=en-US', options
         for (i = 0; i < totalartist; i++) {
             document.getElementById("casting_art").innerHTML += `
             <div class="card p-0" style="width: 18rem;">
-                <img src="https://image.tmdb.org/t/p/w500${art.results[i].profile_path}"
+                <img src="https://image.tmdb.org/t/p/w500${art.results[i].profile_path}" onerror="this.src='assets/img/null.png'"
                 class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">${art.results[i].name}</p>

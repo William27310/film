@@ -10,6 +10,8 @@ const parsedUrl = new URL(window.location.href);
 
 let id = parsedUrl.searchParams.get("id")
 
+
+
 fetch(`https://api.themoviedb.org/3/movie/${id}?language=fr-fr`, options)
     .then(response => response.json())
     .then(data => {
@@ -40,7 +42,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}?language=fr-fr`, options)
     })
     .catch(err => console.error(err));
 
-let total_acteur = 6
+let total_acteur = 20
 
 function replaceImage() {
 
@@ -56,7 +58,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=fr-fr`, options
             document.getElementById("casting").innerHTML +=
                 `
             <div class="card border border-dark p-0" style="width: 10rem;">
-                <img src="https://image.tmdb.org/t/p/w500${acteur.cast[i].profile_path}" alt="...">
+                <img src="https://image.tmdb.org/t/p/w500${acteur.cast[i].profile_path}" onerror="this.src='assets/img/null.png'" alt="...">
                 <div class="card-body">
                     <p class="card-text">${acteur.cast[i].name}</p>
                     <p class="card-text fw-bold">${acteur.cast[i].character}</p>
